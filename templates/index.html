@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Budget Tracker</h1>
+    <ul>
+        {% for budget in budgets %}
+        <li>
+            {{ budget.name }}: ${{ budget.amount }}
+            <a href="{{ url_for('delete_budget', id=budget.id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('add_budget') }}" method="post">
+        <input type="text" name="name" placeholder="Budget name">
+        <input type="number" name="amount" placeholder="Budget amount">
+        <input type="submit" value="Add budget">
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
